@@ -28,16 +28,16 @@
         <div class="right-head">
             <nav>
                 <a href="index.html">Home</a>
-                <a href="#">Hotels</a>
-                <a href="#">Maps</a>
-                <a href="chatbox.html">Chatbox</a>
+                <a href="hotel.html">Hotels</a>
+                <a href="maps.html">Maps</a>
+               
 
             </nav>
             <!-- Sidebar -->
             <div id="sidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
                 <a href="index.html">Home</a>
-                <a href="hotels.html">Hotels</a>
+                <a href="hotel.html">Hotels</a>
                 <a href="maps.html">Maps</a>
                 <a href="services.html">Services</a>
                 <a href="about.html">About Us</a>
@@ -106,6 +106,25 @@
             </button>
         </div>
     </nav>
+    
+<!-- Floating Chat -->
+<div id="chat-container">
+  <div id="chatbox" class="hidden">
+    <div id="chat-header">
+      Jharkhand Chatbot ✨
+      <span id="chat-close">&times;</span>
+    </div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Type your question..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+  <button id="chat-toggle">💬</button>
+</div>
+
+
+
     <script src="js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
         integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK"

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jharkhand Map - Jharkhand Tourism</title>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=EB+Garamond:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/maps.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="top">
+    <div class="brand" aria-label="Site title">
+      <div class="l1">Jharkhand</div>
+      <div class="l2">Tourism</div>
+    </div>
+
+    <div class="right-head">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="maps.html" class="active">Maps</a>
+      </nav>
+
+      <!-- Sidebar -->
+      <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="maps.html" class="active">Maps</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar Toggle -->
+  <div id="main">
+    <span class="openbtn" onclick="openSidebar()">&#9776; Menu</span>
+  </div>
+
+  <!-- Main Content -->
+  <main class="wrap maps-page">
+    <h1>Explore Jharkhand on Map</h1>
+    <p>Discover popular cities, waterfalls, and tourist attractions across Jharkhand.</p>
+    <div id="jharkhand-map"></div>
+  </main>
+
+  <!-- Floating Chat -->
+  <div id="chat-container">
+    <div id="chatbox" class="hidden">
+      <div id="chat-header">
+        Jharkhand Chatbot ✨
+        <span id="chat-close">&times;</span>
+      </div>
+      <div id="chat-messages"></div>
+      <div id="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type your question..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+    <button id="chat-toggle">💬</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="js/maps.js"></script>
+</body>
+</html>

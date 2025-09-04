@@ -1,0 +1,105 @@
+:root {
+  --bg: #cfe9cf;     /* Mint background (same as index.css) */
+  --text: #1c1c1c;   /* Dark text */
+  --accent: #245aa0; /* Deep blue accent */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "EB Garamond", Georgia, serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+/* Hotels Page Wrapper */
+.hotels-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Heading */
+.hotels-page h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.hotels-page p {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+/* Hotel Cards */
+.hotel-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.hotel-card h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+
+.hotel-card ul {
+  padding-left: 20px;
+}
+
+.hotel-card li {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* Book Now Button */
+.book-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 14px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.book-btn:hover {
+  background: #1e4b85;
+}
+
+/* Navbar Matching with Index */
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  opacity: 0.85;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+nav a.active {
+  color: var(--accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
