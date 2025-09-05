@@ -19,7 +19,7 @@ body {
     margin: 0;
     color: var(--text);
     background: var(--bg);
-    font-family: "EB Garamond", Georgia, serif;
+    font-family: "Pacifico" , "EB Garamond", Georgia, serif;
     line-height: 1.35;
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .brand {
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: "Pacifico" , "Playfair Display", Georgia, serif;
     line-height: 1;
 }
 
@@ -61,7 +61,6 @@ nav {
     align-items: center;
     font-family: "Playfair Display", Georgia, serif;
     font-size: 24px;
-    padding-right: 14px;
 }
 
 nav a {
@@ -253,9 +252,9 @@ nav a:hover {
 }
 
 /* Hero Section */
-.hero {
-    height: 100vh;
-    background: url("path/to/your/hero-image.jpg") center/cover no-repeat;
+.hero1 {
+    height: 60vh;
+    background: url(path/to/your/hero-image.jpg) center / cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -264,7 +263,7 @@ nav a:hover {
     position: relative;
 }
 
-.hero::after {
+.hero1::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -272,22 +271,22 @@ nav a:hover {
     /* dark overlay for text readability */
 }
 
-.hero-content {
+.hero1-content {
     position: relative;
     z-index: 1;
 }
 
-.hero h1 {
+.hero1 h1 {
     font-size: 48px;
     margin: 0;
 }
 
-.hero p {
+.hero1 p {
     font-size: 20px;
     margin: 16px 0;
 }
 
-.hero-btn {
+.hero1-btn {
     display: inline-block;
     padding: 12px 24px;
     background: #f8b400;
@@ -298,7 +297,7 @@ nav a:hover {
     transition: 0.3s;
 }
 
-.hero-btn:hover {
+.hero1-btn:hover {
     background: #ffcc33;
 }
 
@@ -326,6 +325,7 @@ nav a:hover {
     position: relative;
     left: 100px;
 }
+
 /* Chatbox */
 #chatbox {
     position: fixed;
@@ -338,7 +338,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     font-family: "EB Garamond", serif;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     z-index: 1200;
 }
@@ -397,9 +397,11 @@ nav a:hover {
     padding: 8px 14px;
     cursor: pointer;
 }
+
 #send-btn:hover {
     background: #1e4b85;
 }
+
 /* Floating Chatbox */
 #chat-container {
     position: fixed;
@@ -417,7 +419,7 @@ nav a:hover {
     height: 55px;
     font-size: 24px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: background 0.3s;
 }
 
@@ -434,7 +436,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     font-family: "EB Garamond", serif;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     margin-bottom: 10px;
 }
@@ -496,9 +498,11 @@ nav a:hover {
     padding: 8px 14px;
     cursor: pointer;
 }
+
 #send-btn:hover {
     background: #1e4b85;
 }
+
 #chat-header {
     background: var(--accent);
     color: white;
@@ -515,6 +519,7 @@ nav a:hover {
     font-size: 20px;
     cursor: pointer;
 }
+
 #chat-close:hover {
     color: #ffcccb;
 }

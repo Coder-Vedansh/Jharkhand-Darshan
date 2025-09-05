@@ -18,6 +18,8 @@ body {
   max-width: 1240px;
   margin: 0 auto;
   padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.4);
+    /* dark overlay for text readability */
 }
 
 /* Heading */
