@@ -2,31 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jharkhand Map - Jharkhand Tourism</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jharkhand Darshan — Maps</title>
 
   <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=EB+Garamond:wght@400;600;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=EB+Garamond:wght@400;600;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-
-  <!-- Custom CSS -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="css/index.css" />
   <link rel="stylesheet" href="css/maps.css" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
+
   <!-- Header -->
   <header class="top">
     <div class="brand" aria-label="Site title">
       <div class="l1">Jharkhand</div>
-      <div class="l2">Tourism</div>
+      <div class="l2">दर्शन</div>
     </div>
 
     <div class="right-head">
@@ -53,11 +51,29 @@
     <span class="openbtn" onclick="openSidebar()">&#9776; Menu</span>
   </div>
 
-  <!-- Main Content -->
+  <!-- Page Content -->
   <main class="wrap maps-page">
     <h1>Explore Jharkhand on Map</h1>
     <p>Discover popular cities, waterfalls, and tourist attractions across Jharkhand.</p>
-    <div id="jharkhand-map"></div>
+
+    <!-- Controls -->
+    <div id="controls">
+      <input id="destination" type="text" placeholder="Enter destination (e.g. Ranchi)" />
+      <button id="routeBtn">Get Route</button>
+      <button id="recenterBtn" title="Center map on your location">Re-center</button>
+    </div>
+
+    <!-- Map & Sidebar -->
+    <section id="app">
+      <aside id="sidebar-panel">
+        <h2>Turn-by-turn Instructions</h2>
+        <div id="instructions">No route yet — enter a destination and click "Get Route".</div>
+      </aside>
+
+      <section id="map-container">
+        <div id="map"></div>
+      </section>
+    </section>
   </main>
 
   <!-- Floating Chat -->
@@ -77,9 +93,9 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="js/index.js"></script>
   <script src="js/maps.js"></script>
 </body>
 </html>
