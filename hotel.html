@@ -15,8 +15,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/index.css" />
   <link rel="stylesheet" href="css/hotel.css" />
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
   <!-- Header -->
@@ -37,7 +37,7 @@
       <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
         <a href="index.html">Home</a>
-        <a href="hotels.html" class="active">Hotels</a>
+        <a href="hotel.html" class="active">Hotels</a>
         <a href="maps.html">Maps</a>
         <a href="services.html">Services</a>
         <a href="about.html">About Us</a>
@@ -55,54 +55,16 @@
     <h1>Hotels in Jharkhand</h1>
     <p>Find the best hotels and stays in Jharkhand’s top cities, whether you’re looking for luxury, budget, or cultural experiences.</p>
 
-    <div class="row g-4">
-      <!-- Ranchi -->
-      <div class="col-md-6">
-        <div class="hotel-card">
-          <h2>Ranchi</h2>
-          <ul>
-            <li><strong>Radisson Blu</strong> – 5-star luxury with pool & restaurants. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-            <li><strong>Capitol Hill</strong> – Premium stay in the heart of the city. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-            <li><strong>Hotel Green Horizon</strong> – Budget-friendly comfort. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Jamshedpur -->
-      <div class="col-md-6">
-        <div class="hotel-card">
-          <h2>Jamshedpur</h2>
-          <ul>
-            <li><strong>The Sonnet</strong> – Elegant business & leisure hotel. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-            <li><strong>Ramada</strong> – Premium stay with modern facilities. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-            <li><strong>Ginger Hotel</strong> – Budget option with essential comfort. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Deoghar -->
-      <div class="col-md-6">
-        <div class="hotel-card">
-          <h2>Deoghar</h2>
-          <ul>
-            <li><strong>Amrapali Clarks Inn</strong> – Popular among pilgrims. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-            <li><strong>Hotel Yashoda International</strong> – Comfortable mid-range stay. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-            <li><strong>Hotel Ashoka Inn</strong> – Affordable and centrally located. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Netarhat -->
-      <div class="col-md-6">
-        <div class="hotel-card">
-          <h2>Netarhat</h2>
-          <ul>
-            <li><strong>Netarhat Tourist Lodge</strong> – Scenic government-run lodge, ideal for hill views. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-            <li><strong>Local Guesthouses</strong> – Affordable stays run by locals. <a href="https://www.booking.com" target="_blank" class="book-btn">Book Now</a></li>
-          </ul>
-        </div>
-      </div>
+    <!-- Search + Filter -->
+    <div class="d-flex gap-3 mb-4">
+      <input type="text" id="hotel-search" class="form-control" placeholder="Search hotels...">
+      <select id="city-filter" class="form-select">
+        <option value="all">All Cities</option>
+      </select>
     </div>
+
+    <!-- Hotels will be injected here -->
+    <div id="hotels-container" class="row g-4"></div>
   </main>
 
   <!-- Floating Chat -->
@@ -122,6 +84,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="js/hotel.js"></script>
   <script src="js/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"></script>
 </body>

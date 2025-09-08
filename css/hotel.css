@@ -1,5 +1,5 @@
 :root {
-  --bg: #cfe9cf;     /* Mint background (same as index.css) */
+  --bg: #cfe9cf;     /* Mint background */
   --text: #1c1c1c;   /* Dark text */
   --accent: #245aa0; /* Deep blue accent */
 }
@@ -18,8 +18,8 @@ body {
   max-width: 1240px;
   margin: 0 auto;
   padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.4);
-    /* dark overlay for text readability */
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
 }
 
 /* Heading */
@@ -35,6 +35,23 @@ body {
   font-size: 18px;
   opacity: 0.9;
   margin-bottom: 30px;
+}
+
+/* Search & Filter */
+#hotel-search,
+#city-filter {
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 16px;
+}
+
+#hotel-search:focus,
+#city-filter:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 4px rgba(36, 90, 160, 0.4);
 }
 
 /* Hotel Cards */
@@ -55,18 +72,15 @@ body {
 
 .hotel-card h2 {
   font-family: "Playfair Display", serif;
-  font-size: 24px;
-  margin-bottom: 14px;
+  font-size: 22px;
+  margin-bottom: 10px;
   color: var(--accent);
 }
 
-.hotel-card ul {
-  padding-left: 20px;
-}
-
-.hotel-card li {
-  font-size: 16px;
-  margin-bottom: 8px;
+.hotel-card p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #444;
 }
 
 /* Book Now Button */
@@ -86,7 +100,7 @@ body {
   background: #1e4b85;
 }
 
-/* Navbar Matching with Index */
+/* Navbar */
 nav a {
   text-decoration: none;
   color: var(--text);
@@ -104,4 +118,16 @@ nav a.active {
   font-weight: 600;
   border-bottom: 2px solid var(--accent);
   padding-bottom: 2px;
+}
+
+.hotel-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.hotel-card p strong {
+  color: var(--accent);
 }

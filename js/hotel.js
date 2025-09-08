@@ -11,70 +11,110 @@ function closeSidebar() {
   if (main) main.style.marginLeft = "0";
 }
 
-// === Simple Tourism Chatbot ===
+// === Hotels from Database (JSON file) ===
+const hotelsContainer = document.getElementById("hotels-container");
+const searchInput = document.getElementById("hotel-search");
+const cityFilter = document.getElementById("city-filter");
+
+let allHotels = [];
+
+// Render Hotels
+function renderHotels(list) {
+  hotelsContainer.innerHTML = "";
+  if (list.length === 0) {
+    hotelsContainer.innerHTML = "<p>No hotels found.</p>";
+    return;
+  }
+  list.forEach(h => {
+    const col = document.createElement("div");
+    col.className = "col-md-6";
+    col.innerHTML = `
+      <div class="hotel-card">
+        <img src="${h.image}" alt="${h.name}" class="hotel-img"/>
+        <h2>${h.name} <small class="text-muted">(${h.city})</small></h2>
+        <p><strong>Address:</strong> ${h.address}</p>
+        <p><strong>⭐ Rating:</strong> ${"★".repeat(h.stars)} (${h.stars} Star)</p>
+        <p><strong>Check-in:</strong> ${h.checkin} | <strong>Check-out:</strong> ${h.checkout}</p>
+        <p>${h.desc}</p>
+        <a href="${h.link}" target="_blank" class="book-btn">Book Now</a>
+      </div>
+    `;
+    hotelsContainer.appendChild(col);
+  });
+}
+
+// Filter + Search
+function filterHotels() {
+  const query = searchInput.value.toLowerCase();
+  const city = cityFilter.value;
+  let filtered = allHotels;
+
+  if (city !== "all") {
+    filtered = filtered.filter(h => h.city === city);
+  }
+  if (query) {
+    filtered = filtered.filter(h => 
+      h.name.toLowerCase().includes(query) ||
+      h.address.toLowerCase().includes(query)
+    );
+  }
+  renderHotels(filtered);
+}
+
+// Load from hotels_full.json
+fetch("hotels.json")
+  .then(res => res.json())
+  .then(data => {
+    allHotels = data;
+
+    // Populate city dropdown dynamically
+    const cities = [...new Set(allHotels.map(h => h.city))];
+    cities.forEach(city => {
+      const opt = document.createElement("option");
+      opt.value = city;
+      opt.textContent = city;
+      cityFilter.appendChild(opt);
+    });
+
+    renderHotels(allHotels);
+  });
+
+// Search & filter events
+searchInput.addEventListener("input", filterHotels);
+cityFilter.addEventListener("change", filterHotels);
+
+// === Chatbot (unchanged, trimmed version) ===
 const messages = document.getElementById("chat-messages");
 const input = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
 
-// Only run chatbot logic if chatbox exists (so it doesn’t break on pages without it)
 if (messages && input && sendBtn) {
   const responses = [
     {
-      keywords: ["hi", "hello", "hey", "namaste"],
-      reply: "👋 Hello! Welcome to Jharkhand Tourism Guide. How can I help you today?"
+      keywords: ["hi", "hello"],
+      reply: "👋 Hello! Welcome to Jharkhand Tourism Hotels Guide."
     },
     {
-      keywords: ["hotel", "hotels", "stay", "accommodation", "resort"],
-      reply: "🏨 Jharkhand offers many hotels by city:\n\n" +
-             "📍 Ranchi – Radisson Blu, Capitol Hill, Green Horizon\n" +
-             "📍 Jamshedpur – The Sonnet, Ramada, Ginger Hotel\n" +
-             "📍 Deoghar – Amrapali Clarks Inn, Yashoda International\n" +
-             "📍 Netarhat – Netarhat Tourist Lodge\n\n" +
-             "👉 <a href='hotels.html' class='btn-link'>View Hotels Guide</a>"
+      keywords: ["hotel", "stay"],
+      reply: "🏨 Use the search and filters above to explore 1000+ hotels in Jharkhand."
     },
     {
-      keywords: ["luxury hotel", "5 star", "resort", "premium stay"],
-      reply: "✨ Top **luxury hotels in Jharkhand**:\n- Radisson Blu (Ranchi)\n- The Sonnet (Jamshedpur)\n- Capitol Residency (Ranchi)\n\n" +
-             "👉 <a href='hotels.html' class='btn-link'>Explore Luxury Hotels</a>"
-    },
-    {
-      keywords: ["budget hotel", "cheap stay", "low cost", "affordable"],
-      reply: "💰 **Budget stays** include:\n- Hotel Green Horizon (Ranchi)\n- Hotel Alcor (Jamshedpur)\n- Hotel Ashoka Inn (Deoghar)\n\n" +
-             "👉 <a href='hotels.html' class='btn-link'>See Budget Hotels</a>"
-    },
-    {
-      keywords: ["place", "tourist", "visit", "sightseeing"],
-      reply: "🌍 Must-visit in Jharkhand:\n- Netarhat (Queen of Chotanagpur)\n- Betla National Park\n- Parasnath Hill\n- Deoghar Temple\n- Patratu Valley"
-    },
-    {
-      keywords: ["food", "cuisine", "eat"],
-      reply: "🍲 Jharkhand special dishes: Dhuska, Thekua, Rugra, Chilka Roti, Handia (rice beer)."
-    },
-    {
-      keywords: ["festival", "festivals", "sarhul", "karma", "sohrai", "tusu"],
-      reply: "🎉 Jharkhand festivals:\n- Sarhul (nature worship)\n- Karma (folk dance festival)\n- Sohrai (harvest)\n- Tusu (folk harvest festival)"
-    },
-    {
-      keywords: ["wildlife", "animals", "sanctuary", "park"],
-      reply: "🦌 Wildlife:\n- Betla National Park (tigers, elephants)\n- Dalma Sanctuary (elephants, deer)\n- Hazaribagh Sanctuary (sloth bears, leopards)"
-    },
-    {
-      keywords: ["about website", "guide"],
-      reply: "🌐 This site is your **Jharkhand Tourism Guide** – helping you explore places, hotels, culture, and maps."
+      keywords: ["places", "visit"],
+      reply: "🌍 Top attractions: Netarhat, Betla National Park, Parasnath Hill, Patratu Valley."
     }
   ];
 
   function addMessage(text, sender) {
     const msg = document.createElement("div");
     msg.classList.add("message", sender);
-    msg.innerHTML = text; // supports links
+    msg.innerHTML = text;
     messages.appendChild(msg);
     messages.scrollTop = messages.scrollHeight;
   }
 
   function botReply(userText) {
     const lower = userText.toLowerCase();
-    let reply = "❓ Sorry, I don’t know that. Try asking about hotels, tourist spots, culture, or food.";
+    let reply = "❓ Sorry, I don’t know that. Try asking about hotels, places, or culture.";
     for (let item of responses) {
       if (item.keywords.some(word => lower.includes(word))) {
         reply = item.reply;
@@ -97,7 +137,6 @@ if (messages && input && sendBtn) {
     if (e.key === "Enter") sendBtn.click();
   });
 
-  // Floating Chat Toggle
   const chatToggle = document.getElementById("chat-toggle");
   const chatbox = document.getElementById("chatbox");
   const chatClose = document.getElementById("chat-close");
@@ -106,7 +145,7 @@ if (messages && input && sendBtn) {
     chatToggle.addEventListener("click", () => {
       chatbox.classList.toggle("hidden");
       if (!chatbox.classList.contains("hidden") && messages.childElementCount === 0) {
-        addMessage("👋 Hi! I’m your Jharkhand Travel Assistant. Ask me about hotels, places, or culture!", "bot");
+        addMessage("👋 Hi! I’m your Jharkhand Travel Assistant.", "bot");
       }
     });
 
