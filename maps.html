@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Jharkhand Darshan — Maps</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=EB+Garamond:wght@400;600;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=EB+Garamond:wght@400;600;800&family=Dancing+Script:wght@600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,10 +21,11 @@
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
+
 <body>
 
   <!-- Header -->
-  <header class="top">
+  <header class="top solid-nav">
     <div class="brand" aria-label="Site title">
       <div class="l1">Jharkhand</div>
       <div class="l2">दर्शन</div>
@@ -33,7 +37,6 @@
         <a href="hotel.html">Hotels</a>
         <a href="maps.html" class="active">Maps</a>
       </nav>
-
       <!-- Sidebar -->
       <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
@@ -43,8 +46,11 @@
         <a href="services.html">Services</a>
         <a href="about.html">About Us</a>
       </div>
+      <!-- Menu Button -->
+      <span class="openbtn" onclick="openSidebar()">&#9776; Menu</span>
     </div>
   </header>
+
 
   <!-- Sidebar Toggle -->
   <div id="main">
@@ -93,9 +99,11 @@
   </div>
 
   <!-- Scripts -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="js/index.js"></script>
   <script src="js/maps.js"></script>
 </body>
+
 </html>

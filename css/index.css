@@ -19,23 +19,14 @@ body {
     margin: 0;
     color: var(--text);
     background: var(--bg);
-    font-family: "Pacifico" , "EB Garamond", Georgia, serif;
+    font-family: "Pacifico", "EB Garamond", Georgia, serif;
     line-height: 1.35;
 }
 
-/* Header */
-.top {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 18px 28px 0;
-    gap: 12px;
-}
-
 .brand {
-    font-family: "Pacifico" , "Playfair Display", Georgia, serif;
+    font-family: "Pacifico", "Playfair Display", Georgia, serif;
     line-height: 1;
+    color: whitesmoke;
 }
 
 .brand .l1 {
@@ -65,7 +56,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    color: var(--text);
+    color: whitesmoke;
     opacity: .85;
 }
 
@@ -93,7 +84,6 @@ nav a:hover {
     position: relative;
     max-width: 1240px;
     margin: 0 auto;
-    padding: 18px 28px 80px;
 }
 
 /* Left copy */
@@ -522,4 +512,172 @@ nav a:hover {
 
 #chat-close:hover {
     color: #ffcccb;
+}
+
+/* Transparent Navbar */
+.top {
+    position: absolute;
+    /* so it overlays the hero image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    background: transparent;
+    /* makes it see-through */
+    z-index: 1000;
+    /* stays above content */
+}
+
+/* Poster container */
+
+
+.container-fluid{
+    padding: 0;
+}
+
+/* Brand Styling */
+.l1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    position: relative;
+    left: 100px;
+}
+
+.l2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 6px;
+    position: relative;
+    left: 100px;
+}
+
+/* Tablet (≤ 992px) */
+@media (max-width: 992px) {
+    .l1 {
+        font-size: 28px;
+    }
+    .l2 {
+        font-size: 22px;
+    }
+}
+
+/* Mobile (≤ 600px) */
+@media (max-width: 600px) {
+    .l1 {
+        font-size: 22px;
+        text-align: center;
+    }
+    .l2 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Poster container fix */
+.container-fluid {
+    position: relative;
+    width: 100%;
+    height: 100vh;  /* take full viewport height */
+    padding: 0;
+    overflow: hidden;
+}
+
+.container-fluid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* keeps proportions, covers whole area */
+    display: block;
+}
+
+
+
+
+/* ---------- Full-bleed poster inside centered .wrap ---------- */
+/* makes the child container escape the centered max-width and
+   span the full viewport width (classic "full-bleed" trick) */
+.wrap > .container-fluid {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    height: 100vh;     /* cover the viewport height like the poster */
+    padding: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* ensure the poster image covers and stays centered */
+.wrap > .container-fluid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* cover the area while keeping aspect ratio */
+    display: block;
+    transform: translateZ(0); /* helps some browsers render crisply */
+}
+
+/* make sure header sits above the poster */
+.top {
+    position: absolute; /* already set — keep it absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    z-index: 1100; /* higher than poster */
+}
+
+/* ---------- Brand alignment fixes ---------- */
+/* remove manual left offsets and use header padding instead */
+.brand {
+    font-family: "Pacifico", "Playfair Display", Georgia, serif;
+    line-height: 1;
+    color: whitesmoke;
+    padding-left: 28px; /* same as .top horizontal padding */
+    padding-top: 18px;  /* aligns nicely with header padding */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.brand .l1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    margin: 0;
+    left: 100px;
+    position: relative;
+}
+
+.brand .l2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    left: 100px;
+    position: relative;
+}
+
+/* Responsive brand sizes */
+@media (max-width: 992px) {
+    .brand .l1 { font-size: 28px; }
+    .brand .l2 { font-size: 22px; }
+}
+
+@media (max-width: 600px) {
+    .brand {
+        padding-left: 12px;
+        align-items: flex-start; /* keep on left, not centered */
+    }
+    .brand .l1 { font-size: 22px; }
+    .brand .l2 { font-size: 18px; }
 }

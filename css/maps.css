@@ -130,3 +130,66 @@ body {
     height: 500px;
   }
 }
+
+/* Navbar fix ONLY for Maps page */
+.maps-page .top {
+  position: sticky;
+  /* sticks at top when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #2b7a2b;
+  /* solid green background */
+  padding: 12px 24px;
+  z-index: 1200;
+  /* stays above map */
+}
+
+.maps-page nav a {
+  color: white;
+  opacity: 0.9;
+}
+
+.maps-page nav a:hover {
+  opacity: 1;
+}
+
+/* Solid Navbar styling for Maps page */
+.solid-nav {
+  position: sticky;
+  /* stays at top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #2b7a2b;
+  /* solid green */
+  padding: 12px 24px;
+  z-index: 1200;
+  /* stays above map and content */
+  display: flex;
+  align-items: center;
+}
+
+.solid-nav nav a {
+  color: white;
+  opacity: 0.9;
+}
+
+.solid-nav nav a:hover {
+  opacity: 1;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: whitesmoke;
+  color: #2b7a2b;
+  padding: 10px 14px;
+  border: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  border-radius: 6px;
+  font-weight: bolder;
+}
