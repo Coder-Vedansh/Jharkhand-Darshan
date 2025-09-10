@@ -534,7 +534,7 @@ nav a:hover {
 /* Poster container */
 
 
-.container-fluid{
+.container-fluid {
     padding: 0;
 }
 
@@ -560,6 +560,7 @@ nav a:hover {
     .l1 {
         font-size: 28px;
     }
+
     .l2 {
         font-size: 22px;
     }
@@ -571,6 +572,7 @@ nav a:hover {
         font-size: 22px;
         text-align: center;
     }
+
     .l2 {
         font-size: 18px;
         text-align: center;
@@ -587,7 +589,8 @@ nav a:hover {
 .container-fluid {
     position: relative;
     width: 100%;
-    height: 100vh;  /* take full viewport height */
+    height: 100vh;
+    /* take full viewport height */
     padding: 0;
     overflow: hidden;
 }
@@ -595,7 +598,8 @@ nav a:hover {
 .container-fluid img {
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* keeps proportions, covers whole area */
+    object-fit: cover;
+    /* keeps proportions, covers whole area */
     display: block;
 }
 
@@ -605,36 +609,41 @@ nav a:hover {
 /* ---------- Full-bleed poster inside centered .wrap ---------- */
 /* makes the child container escape the centered max-width and
    span the full viewport width (classic "full-bleed" trick) */
-.wrap > .container-fluid {
+.wrap>.container-fluid {
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
     width: 100vw;
-    height: 100vh;     /* cover the viewport height like the poster */
+    height: 100vh;
+    /* cover the viewport height like the poster */
     padding: 0;
     overflow: hidden;
     z-index: 0;
 }
 
 /* ensure the poster image covers and stays centered */
-.wrap > .container-fluid img {
+.wrap>.container-fluid img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* cover the area while keeping aspect ratio */
+    object-fit: cover;
+    /* cover the area while keeping aspect ratio */
     display: block;
-    transform: translateZ(0); /* helps some browsers render crisply */
+    transform: translateZ(0);
+    /* helps some browsers render crisply */
 }
 
 /* make sure header sits above the poster */
 .top {
-    position: absolute; /* already set — keep it absolute */
+    position: absolute;
+    /* already set — keep it absolute */
     top: 0;
     left: 0;
     width: 100%;
     background: transparent;
-    z-index: 1100; /* higher than poster */
+    z-index: 1100;
+    /* higher than poster */
 }
 
 /* ---------- Brand alignment fixes ---------- */
@@ -643,8 +652,10 @@ nav a:hover {
     font-family: "Pacifico", "Playfair Display", Georgia, serif;
     line-height: 1;
     color: whitesmoke;
-    padding-left: 28px; /* same as .top horizontal padding */
-    padding-top: 18px;  /* aligns nicely with header padding */
+    padding-left: 28px;
+    /* same as .top horizontal padding */
+    padding-top: 18px;
+    /* aligns nicely with header padding */
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -669,15 +680,47 @@ nav a:hover {
 
 /* Responsive brand sizes */
 @media (max-width: 992px) {
-    .brand .l1 { font-size: 28px; }
-    .brand .l2 { font-size: 22px; }
+    .brand .l1 {
+        font-size: 28px;
+    }
+
+    .brand .l2 {
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 600px) {
     .brand {
         padding-left: 12px;
-        align-items: flex-start; /* keep on left, not centered */
+        align-items: flex-start;
+        /* keep on left, not centered */
     }
-    .brand .l1 { font-size: 22px; }
-    .brand .l2 { font-size: 18px; }
+
+    .brand .l1 {
+        font-size: 22px;
+    }
+
+    .brand .l2 {
+        font-size: 18px;
+    }
 }
+
+.container-fluid video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ensures video fills the screen */
+    display: block;
+}
+
+.hero1 {
+  background: url("../explore.jpg") no-repeat center center/cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
