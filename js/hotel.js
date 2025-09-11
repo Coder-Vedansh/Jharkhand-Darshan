@@ -1,156 +1,178 @@
-// === Sidebar Menu ===
-function openSidebar() {
-  document.getElementById("sidebar").style.width = "250px";
-  const main = document.getElementById("main");
-  if (main) main.style.marginLeft = "250px";
+// hotel.js
+// Clean version: loads data from hotels.json and renders hotel cards with redirect links.
+
+// ---------- State ----------
+const state = {
+  hotels: [],
+  filtered: [],
+  sortAsc: true,
+  favorites: new Set()
+};
+
+// ---------- Helpers ----------
+const $ = sel => document.querySelector(sel);
+
+function escapeHtml(s) {
+  return String(s || "").replace(/[&<>"]/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;"
+  }[c]));
 }
 
-function closeSidebar() {
-  document.getElementById("sidebar").style.width = "0";
-  const main = document.getElementById("main");
-  if (main) main.style.marginLeft = "0";
-}
-
-// === Hotels from Database (JSON file) ===
-const hotelsContainer = document.getElementById("hotels-container");
-const searchInput = document.getElementById("hotel-search");
-const cityFilter = document.getElementById("city-filter");
-
-let allHotels = [];
-
-// Render Hotels
-function renderHotels(list) {
-  hotelsContainer.innerHTML = "";
-  if (list.length === 0) {
-    hotelsContainer.innerHTML = "<p>No hotels found.</p>";
-    return;
+// ---------- Load data ----------
+async function loadData() {
+  try {
+    const res = await fetch("hotels.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to fetch hotels.json");
+    const data = await res.json();
+    if (!Array.isArray(data)) throw new Error("hotels.json must be an array");
+    state.hotels = data;
+  } catch (e) {
+    console.error("Error loading hotels.json:", e);
+    state.hotels = []; // empty if JSON missing
   }
-  list.forEach(h => {
-    const col = document.createElement("div");
-    col.className = "col-md-6";
-    col.innerHTML = `
-      <div class="hotel-card">
-        <img src="${h.image}" alt="${h.name}" class="hotel-img"/>
-        <h2>${h.name} <small class="text-muted">(${h.city})</small></h2>
-        <p><strong>Address:</strong> ${h.address}</p>
-        <p><strong>⭐ Rating:</strong> ${"★".repeat(h.stars)} (${h.stars} Star)</p>
-        <p><strong>Check-in:</strong> ${h.checkin} | <strong>Check-out:</strong> ${h.checkout}</p>
-        <p>${h.desc}</p>
-        <a href="${h.link}" target="_blank" class="book-btn">Book Now</a>
-      </div>
-    `;
-    hotelsContainer.appendChild(col);
+  state.filtered = state.hotels.slice();
+  populateCity();
+  render();
+}
+
+// ---------- Populate city filter ----------
+function populateCity() {
+  const citySet = new Set(state.hotels.map(h => h.city).filter(Boolean));
+  const sel = $("#city");
+  sel.innerHTML = `<option value="">All cities</option>`;
+  citySet.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c;
+    opt.textContent = c;
+    sel.appendChild(opt);
   });
 }
 
-// Filter + Search
-function filterHotels() {
-  const query = searchInput.value.toLowerCase();
-  const city = cityFilter.value;
-  let filtered = allHotels;
+// ---------- Render hotels ----------
+function render() {
+  const c = $("#hotels-container");
+  c.innerHTML = "";
 
-  if (city !== "all") {
-    filtered = filtered.filter(h => h.city === city);
+  if (state.filtered.length === 0) {
+    $("#empty").style.display = "block";
+    return;
+  } else {
+    $("#empty").style.display = "none";
   }
-  if (query) {
-    filtered = filtered.filter(h => 
-      h.name.toLowerCase().includes(query) ||
-      h.address.toLowerCase().includes(query)
+
+  state.filtered.forEach(h => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const media = document.createElement("div");
+    media.className = "media";
+    media.style.backgroundImage = `url(${h.image || ""})`;
+
+    const content = document.createElement("div");
+    content.className = "content";
+
+    content.innerHTML = `
+      <div class="row">
+        <div>
+          <h3 class="title">${escapeHtml(h.name)}</h3>
+          <div class="meta">${escapeHtml(h.city)} • <span style="font-weight:600">${h.rating}</span> ★</div>
+        </div>
+        <div style="text-align:right">
+          <div class="price">₹${h.price}</div>
+          <div class="meta" style="font-size:13px">per night</div>
+        </div>
+      </div>
+      <p class="meta" style="margin-top:10px">${escapeHtml(h.desc || "")}</p>
+    `;
+
+    const cta = document.createElement("div");
+    cta.className = "cta";
+
+    // ✅ Book button redirects using link from JSON
+    const book = document.createElement("a");
+    book.className = "btn";
+    book.textContent = "Book";
+    book.href = h.link || "#";
+    book.target = "_blank"; // open in new tab
+
+    // ❤️ Favorites toggle
+    const fav = document.createElement("button");
+    fav.className = "btn ghost";
+    fav.textContent = state.favorites.has(h.id) ? "♥" : "♡";
+    fav.addEventListener("click", () => toggleFav(h, fav));
+
+    cta.appendChild(book);
+    cta.appendChild(fav);
+
+    content.appendChild(cta);
+    card.appendChild(media);
+    card.appendChild(content);
+    c.appendChild(card);
+  });
+}
+
+// ---------- Favorites ----------
+function toggleFav(h, btn) {
+  if (state.favorites.has(h.id)) {
+    state.favorites.delete(h.id);
+    btn.textContent = "♡";
+  } else {
+    state.favorites.add(h.id);
+    btn.textContent = "♥";
+  }
+}
+
+// ---------- Filters / Sorting ----------
+function applyFilters() {
+  const q = $("#q").value.trim().toLowerCase();
+  const city = $("#city").value;
+  let arr = state.hotels.slice();
+
+  if (city) arr = arr.filter(h => h.city === city);
+  if (q) {
+    arr = arr.filter(h =>
+      (h.name || "").toLowerCase().includes(q) ||
+      (h.desc || "").toLowerCase().includes(q) ||
+      (h.city || "").toLowerCase().includes(q)
     );
   }
-  renderHotels(filtered);
+
+  arr.sort((a, b) => state.sortAsc ? a.price - b.price : b.price - a.price);
+
+  state.filtered = arr;
+  render();
 }
 
-// Load from hotels_full.json
-fetch("hotels.json")
-  .then(res => res.json())
-  .then(data => {
-    allHotels = data;
+// ---------- Events ----------
+document.addEventListener("DOMContentLoaded", () => {
+  loadData();
 
-    // Populate city dropdown dynamically
-    const cities = [...new Set(allHotels.map(h => h.city))];
-    cities.forEach(city => {
-      const opt = document.createElement("option");
-      opt.value = city;
-      opt.textContent = city;
-      cityFilter.appendChild(opt);
-    });
+  $("#q").addEventListener("input", applyFilters);
+  $("#city").addEventListener("change", applyFilters);
 
-    renderHotels(allHotels);
+  $("#clear").addEventListener("click", () => {
+    $("#q").value = "";
+    $("#city").value = "";
+    state.sortAsc = true;
+    applyFilters();
   });
 
-// Search & filter events
-searchInput.addEventListener("input", filterHotels);
-cityFilter.addEventListener("change", filterHotels);
-
-// === Chatbot (unchanged, trimmed version) ===
-const messages = document.getElementById("chat-messages");
-const input = document.getElementById("chat-input");
-const sendBtn = document.getElementById("send-btn");
-
-if (messages && input && sendBtn) {
-  const responses = [
-    {
-      keywords: ["hi", "hello"],
-      reply: "👋 Hello! Welcome to Jharkhand Tourism Hotels Guide."
-    },
-    {
-      keywords: ["hotel", "stay"],
-      reply: "🏨 Use the search and filters above to explore 1000+ hotels in Jharkhand."
-    },
-    {
-      keywords: ["places", "visit"],
-      reply: "🌍 Top attractions: Netarhat, Betla National Park, Parasnath Hill, Patratu Valley."
-    }
-  ];
-
-  function addMessage(text, sender) {
-    const msg = document.createElement("div");
-    msg.classList.add("message", sender);
-    msg.innerHTML = text;
-    messages.appendChild(msg);
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  function botReply(userText) {
-    const lower = userText.toLowerCase();
-    let reply = "❓ Sorry, I don’t know that. Try asking about hotels, places, or culture.";
-    for (let item of responses) {
-      if (item.keywords.some(word => lower.includes(word))) {
-        reply = item.reply;
-        break;
-      }
-    }
-    addMessage(reply, "bot");
-  }
-
-  sendBtn.addEventListener("click", () => {
-    const text = input.value.trim();
-    if (text) {
-      addMessage(text, "user");
-      botReply(text);
-      input.value = "";
-    }
+  $("#sort").addEventListener("click", e => {
+    state.sortAsc = !state.sortAsc;
+    e.target.textContent = state.sortAsc ? "Sort by price" : "Sort by price (desc)";
+    applyFilters();
   });
 
-  input.addEventListener("keypress", e => {
-    if (e.key === "Enter") sendBtn.click();
+  $("#open-favorites").addEventListener("click", () => {
+    const ids = Array.from(state.favorites);
+    if (ids.length === 0) return alert("No favorites yet.");
+    const names = state.hotels
+      .filter(h => ids.includes(h.id))
+      .map(h => h.name)
+      .join("\\n");
+    alert("Favorites:\\n" + names);
   });
-
-  const chatToggle = document.getElementById("chat-toggle");
-  const chatbox = document.getElementById("chatbox");
-  const chatClose = document.getElementById("chat-close");
-
-  if (chatToggle && chatbox && chatClose) {
-    chatToggle.addEventListener("click", () => {
-      chatbox.classList.toggle("hidden");
-      if (!chatbox.classList.contains("hidden") && messages.childElementCount === 0) {
-        addMessage("👋 Hi! I’m your Jharkhand Travel Assistant.", "bot");
-      }
-    });
-
-    chatClose.addEventListener("click", () => {
-      chatbox.classList.add("hidden");
-    });
-  }
-}
+});

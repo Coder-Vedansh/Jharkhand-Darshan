@@ -1,91 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hotels in Jharkhand - Jharkhand Tourism</title>
-
-  <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=EB+Garamond:wght@400;600;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/hotel.css" />
-  <link rel="stylesheet" href="css/index.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hotels — Simple Clean UI</title>
+  <link rel="stylesheet" href="css/hotel.css">
 </head>
+
 <body>
-  <!-- Header -->
-  <header class="top">
-    <div class="brand" aria-label="Site title">
-      <div class="l1">Jharkhand</div>
-      <div class="l2">Tourism</div>
-    </div>
-
-    <div class="right-head">
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="hotel.html" class="active">Hotels</a>
-        <a href="maps.html">Maps</a>
-      </nav>
-
-      <!-- Sidebar -->
-      <div id="sidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
-        <a href="index.html">Home</a>
-        <a href="hotel.html" class="active">Hotels</a>
-        <a href="maps.html">Maps</a>
-        <a href="services.html">Services</a>
-        <a href="about.html">About Us</a>
+  <div class="wrap" id="app">
+    <nav class="navbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <h1>Hotel Explorer</h1>
       </div>
-    </div>
-  </header>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="hotel.html">Hotels</a>
+        <a href="maps.html">Maps</a>
 
-  <!-- Sidebar Toggle -->
-  <div id="main">
-    <span class="openbtn" onclick="openSidebar()">&#9776; Menu</span>
+      </div>
+      <button class="btn" id="open-favorites">Favorites</button>
+    </nav>
+
+    <header>
+      <h2>Find Your Stay</h2>
+      <div class="subtitle">Browse hotels with a clean and simple design</div>
+    </header>
+
+    <section class="controls">
+      <div class="search">
+        <input id="q" class="input" placeholder="Search hotels, landmarks, or amenities" aria-label="search" />
+        <select id="city" class="select" aria-label="filter by city">
+          <option value="">All cities</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost" id="clear">Clear</button>
+        <button class="btn" id="sort">Sort by price</button>
+      </div>
+    </section>
+
+    <main>
+      <div id="hotels-container" aria-live="polite"></div>
+      <div id="empty" class="empty" style="display:none">No hotels found. Try a different search.</div>
+    </main>
   </div>
 
-  <!-- Main Content -->
-  <main class="wrap hotels-page">
-    <h1>Hotels in Jharkhand</h1>
-    <p>Find the best hotels and stays in Jharkhand’s top cities, whether you’re looking for luxury, budget, or cultural experiences.</p>
-
-    <!-- Search + Filter -->
-    <div class="d-flex gap-3 mb-4">
-      <input type="text" id="hotel-search" class="form-control" placeholder="Search hotels...">
-      <select id="city-filter" class="form-select">
-        <option value="all">All Cities</option>
-      </select>
-    </div>
-
-    <!-- Hotels will be injected here -->
-    <div id="hotels-container" class="row g-4"></div>
-  </main>
-
-  <!-- Floating Chat -->
-  <div id="chat-container">
-    <div id="chatbox" class="hidden">
-      <div id="chat-header">
-        Jharkhand Chatbot ✨
-        <span id="chat-close">&times;</span>
-      </div>
-      <div id="chat-messages"></div>
-      <div id="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Type your question..." />
-        <button id="send-btn">Send</button>
+  <template id="modal-tpl">
+    <div class="modal-backdrop" id="modal-backdrop">
+      <div class="modal" role="dialog" aria-modal="true">
+        <button id="close-modal"
+          style="float:right;border:0;background:transparent;font-size:18px;cursor:pointer">✕</button>
+        <h3 id="modal-title">Book room</h3>
+        <p id="modal-sub" style="color:var(--muted);margin-top:6px;margin-bottom:12px"></p>
+        <div class="form-row">
+          <input id="checkin" class="input" type="date" />
+          <input id="checkout" class="input" type="date" />
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn ghost" id="cancel-book">Cancel</button>
+          <button class="btn" id="confirm-book">Confirm</button>
+        </div>
       </div>
     </div>
-    <button id="chat-toggle">💬</button>
-  </div>
-
-  <!-- Scripts -->
-  <script src="js/hotel.js"></script>
-  <script src="js/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"></script>
+  </template>
+ 
+  <script src="js/hotel.js"> </script>
 </body>
+
 </html>

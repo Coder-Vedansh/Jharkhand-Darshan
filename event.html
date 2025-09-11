@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Major Events of Jharkhand</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/events.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="top">
+
+            <div class="right-head">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="hotel.html">Hotels</a>
+                    <a href="maps.html">Maps</a>
+                    <a href="cuisines.html">Cuisines</a>
+                    <a href="events.html" class="active">Events</a>
+                </nav>
+
+                <!-- Sidebar -->
+                <div id="sidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+                    <a href="index.html">Home</a>
+                    <a href="hotel.html">Hotels</a>
+                    <a href="maps.html">Maps</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About Us</a>
+                    <a href="cuisines.html">Cuisines</a>
+                    <a href="events.html" class="active">Events</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar toggle button -->
+        <div id="main">
+            <span class="openbtn" onclick="openSidebar()">&#9776; Menu</span>
+        </div>
+
+        <div class="layout">
+            <!-- Sidebar Months -->
+            <aside class="months">
+                <ul id="monthNav">
+                    <li><a href="#jan">Jan</a></li>
+                    <li><a href="#feb">Feb</a></li>
+                    <li><a href="#mar">Mar</a></li>
+                    <li><a href="#apr">Apr</a></li>
+                    <li><a href="#may">May</a></li>
+                    <li><a href="#jun">Jun</a></li>
+                    <li><a href="#jul">Jul</a></li>
+                    <li><a href="#aug">Aug</a></li>
+                    <li><a href="#sep">Sep</a></li>
+                    <li><a href="#oct">Oct</a></li>
+                    <li><a href="#nov">Nov</a></li>
+                    <li><a href="#dec">Dec</a></li>
+                </ul>
+            </aside>
+
+
+            <!-- Main Content -->
+            <main>
+                <h1>Major Events of Jharkhand</h1>
+                <p class="intro">
+                    Scroll through the months to explore festivals and cultural events of Jharkhand.
+                </p>
+
+                <div class="event-list" id="eventList">
+                    <!-- Events injected by JS -->
+                </div>
+            </main>
+        </div>
+
+        <footer>
+            © <span id="year"></span> Jharkhand Cultural Portal
+        </footer>
+    </div>
+
+    <script src="js/events.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

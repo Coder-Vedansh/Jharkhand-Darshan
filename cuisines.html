@@ -1,0 +1,81 @@
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flavours of Jharkhand — Cuisines & Recipes</title>
+    <link rel="stylesheet" href="css/cuisines.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="logo">
+                <div class="brand">Flavours of Jharkhand</div>
+                <div class="tag">Traditional dishes, stories & recipes</div>
+            </div>
+            <nav>
+                <button id="open-search">Search</button>
+            </nav>
+        </header>
+
+
+        <main class="hero">
+            <section class="intro">
+                <h1>Explore Jharkhand's Culinary Heritage</h1>
+                <p>From tribal staples to festive sweets — discover authentic recipes, local ingredients, and the
+                    stories behind each dish.</p>
+
+
+                <div class="searchbar" id="searchbar">
+                    <input id="q" placeholder="Search dishes, ingredients or region" />
+                    <select id="filter">
+                        <option value="all">All</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="main">Main course</option>
+                        <option value="snack">Snack</option>
+                        <option value="sweet">Sweet</option>
+                    </select>
+                    <button class="btn primary" id="searchBtn">Search</button>
+                </div>
+
+
+                <div class="card-list" id="results">
+                    <!-- Cards injected by JS -->
+                </div>
+            </section>
+
+
+            <aside class="sidebar">
+                <div class="card small">
+                    <h3>Quick Facts</h3>
+                    <p class="meta">Jharkhand cuisine features millet, rice, forest produce, and freshwater fish. Many
+                        dishes are tribal in origin and use minimal spices.</p>
+                </div>
+
+
+                <div class="card small">
+                    <h3>Popular Ingredients</h3>
+                    <div class="tags">
+                        <span class="tag-pill">Rice</span>
+                        <span class="tag-pill">Ragi</span>
+                        <span class="tag-pill">Mahua</span>
+                        <span class="tag-pill">Litti</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+
+        <footer style="text-align:center;margin-top:26px;color:#6b7280">
+            © <span id="year"></span> Flavours of Jharkhand • Built with ❤️
+        </footer>
+    </div>
+
+
+    <script src="js/cuisines.js"></script>
+</body>
+
+</html>

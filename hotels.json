@@ -9,7 +9,7 @@
     "checkout": "12:00",
     "desc": "Upscale full-service hotel with pool, spa and banquet facilities; well-located for airport and city travel.",
     "link": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-ranchi",
-    "image": "hotel-pic/radisson_blu.jpeg"
+    "image": "hotel-img/hotel1.jpeg"
 
   },
   {
@@ -22,7 +22,7 @@
     "checkout": "12:00",
     "desc": "Heritage-style luxury hotel near the railway station offering spacious rooms, garden and a pool.",
     "link": "https://chanakyabnrranchi.com/",
-    "image": "D:\\Chanakya BN.jpeg"
+    "image": "hotel-img/hotel2.jpeg"
   },
   {
     "id": 3,
@@ -34,7 +34,7 @@
     "checkout": "12:00",
     "desc": "Conveniently located near the railway station and bus stand; popular for business and short stays.",
     "link": "https://www.booking.com/hotel/in/palash-residency.html",
-    "image": "D:\\fabhotel palash.jpeg"
+    "image": "hotel-img/hotel3.jpeg"
   },
   {
     "id": 4,
@@ -46,7 +46,7 @@
     "checkout": "12:00",
     "desc": "City-center hotel with comfortable rooms and easy access to local attractions and transport.",
     "link": "https://staybloom.com/hotels/ranchi/bloom-hotel-ranchi",
-    "image": "D:\\Bloom Hotel.jpeg"
+    "image": "bl"
   },
   {
     "id": 5,

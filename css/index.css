@@ -18,7 +18,6 @@ body {
 body {
     margin: 0;
     color: var(--text);
-    background: var(--bg);
     font-family: "Pacifico", "EB Garamond", Georgia, serif;
     line-height: 1.35;
 }
@@ -714,13 +713,63 @@ nav a:hover {
 }
 
 .hero1 {
-  background: url("../explore.jpg") no-repeat center center/cover;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  color: white;
+    background: url("../explore.jpg") no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    color: white;
 }
 
+.hj {
+    display: flex;
+}
+
+h4::before,
+h4::after {
+    content: "";
+    display: inline-block;
+    width: 200px;
+    /* length of the line */
+    height: 2px;
+    /* thickness */
+    background: #000;
+    /* color */
+    margin: 0 10px;
+    /* spacing */
+    vertical-align: middle;
+}
+
+.site-footer {
+    background: #2f6d31;
+    color: #fff;
+    padding: 40px 20px;
+    margin-top: 40px;
+}
+
+.site-footer h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.site-footer p,
+.site-footer a {
+    color: #ddd;
+    font-size: 14px;
+}
+
+.site-footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
