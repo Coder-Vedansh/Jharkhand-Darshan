@@ -1,0 +1,24 @@
+.explore-card {
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    padding-bottom: 15px;
+  }
+  
+  .explore-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .explore-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-text {
+    padding: 10px;
+  }
+  
